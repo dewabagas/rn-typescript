@@ -38,7 +38,7 @@ const SplashScreen: React.FC<
         commonStyles.displayFlex,
         commonStyles.center,
       ]}>
-      {/* <Image
+      <Image
         source={require('../../assets/images/logo.png')}
         style={{
           width: percentageHeight(35),
@@ -46,7 +46,8 @@ const SplashScreen: React.FC<
         }}
         resizeMethod="resize"
         resizeMode="contain"
-      /> */}
+      />
+      {/* <Text style={{ color: '#000' }}>Haha</Text> */}
     </View>
   );
 };

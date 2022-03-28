@@ -7,10 +7,11 @@ import {
 import {createStackNavigator} from '@react-navigation/stack';
 import {connect, ConnectedProps} from 'react-redux';
 
-import {defaultFont} from '../constants/constants'
-import colors from '../constants/colors'
+import {defaultFont} from '../constants/constants';
+import colors from '../constants/colors';
 
 import SplashScreen from '../../screens/SplashScreen/SplashScreen';
+import Login from '../../screens/LoginScreen/Login';
 
 const {Navigator, Screen} = createStackNavigator<RootStackParamList>();
 export const navigationRef = createRef<NavigationContainerRef>();
@@ -23,55 +24,62 @@ const mapStateToProps = (state: RootState) => ({
 const connector = connect(mapStateToProps);
 
 const RootNavigator: React.FC<ConnectedProps<typeof connector>> = ({
-    user: {isOfflineMode},
-    network: {isConnected},
-  }) => {
-    const routeNameRef = useRef('LoginScreen');
-  
-    useEffect(() => {
-      if (
-        isOfflineMode &&
-        isConnected &&
-        routeNameRef.current !== 'LoginScreen'
-      ) {
-        Alert.alert(
-          'Peringatan',
-          'Silahkan login terlebih dahulu jika akan melakukan transaksi',
-          [
-            {
-              text: 'Login',
-            },
-          ],
+  user: {isOfflineMode},
+  network: {isConnected},
+}) => {
+  const routeNameRef = useRef('LoginScreen');
+
+  useEffect(() => {
+    if (
+      isOfflineMode &&
+      isConnected &&
+      routeNameRef.current !== 'LoginScreen'
+    ) {
+      Alert.alert(
+        'Peringatan',
+        'Silahkan login terlebih dahulu jika akan melakukan transaksi',
+        [
           {
-            onDismiss: () => navigationRef.current?.navigate('LoginScreen'),
+            text: 'Login',
           },
-        );
-      }
-    }, [isConnected, isOfflineMode]);
-  
-    return (
-      <NavigationContainer ref={navigationRef}>
-        <Navigator
-          // initialRouteName="TakePhotoKTPScreen"
-          screenOptions={{
-            headerTintColor: '#FFFFFF',
-            headerTitleStyle: {
-              fontFamily: defaultFont,
-            },
-            headerStyle: {
-              backgroundColor: colors.primary,
-            },
-          }}>
-          <Screen
-            component={SplashScreen}
-            name="SplashScreen"
-            options={{
-              headerShown: false,
-            }}
-          />
-        </Navigator>
-      </NavigationContainer>
-    );
-  };
-  
-  export default connector(RootNavigator);
+        ],
+        {
+          onDismiss: () => navigationRef.current?.navigate('LoginScreen'),
+        },
+      );
+    }
+  }, [isConnected, isOfflineMode]);
+
+  return (
+    <NavigationContainer ref={navigationRef}>
+      <Navigator
+        // initialRouteName="TakePhotoKTPScreen"
+        screenOptions={{
+          headerTintColor: '#FFFFFF',
+          headerTitleStyle: {
+            fontFamily: defaultFont,
+          },
+          headerStyle: {
+            backgroundColor: colors.primary,
+          },
+        }}>
+        <Screen
+          component={SplashScreen}
+          name="SplashScreen"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Screen
+          component={Login}
+          name="LoginScreen"
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default connector(RootNavigator);

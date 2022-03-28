@@ -24,7 +24,7 @@ function percentageImage(
 const themeStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
   },
   growContainer: {
     flexGrow: 1,
@@ -61,7 +61,7 @@ const themeStyles = StyleSheet.create({
   },
   formLabel: {
     fontFamily: defaultFont,
-    color: colors.black,
+    color: colors.gray1,
     fontSize: 14,
   },
   title: {
@@ -125,18 +125,18 @@ const themeStyles = StyleSheet.create({
     left: 0,
   },
   useWhiteColor: {
-    color: '#FFF',
+    color: colors.white,
   },
   usePrimaryColor: {
     color: colors.primary,
   },
   useGray3Color: {
-    color: colors.black,
+    color: colors.gray3,
   },
   weightBold: {},
   weight700: {},
   useGray3BgColor: {
-    backgroundColor: colors.black,
+    backgroundColor: colors.gray3,
   },
   usePrimaryBgColor: {
     backgroundColor: colors.primary,
@@ -176,7 +176,7 @@ const themeStyles = StyleSheet.create({
   },
   cardContainer: {
     width: percentageWidth(100),
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
   },
